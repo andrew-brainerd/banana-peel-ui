@@ -1,2 +1,2 @@
 export const MENU_ROUTE = '/';
-export const GAME_ROUTE = '/game/:gameId';
+export const PLAYER_GAMES_ROUTE = '/games/:username';

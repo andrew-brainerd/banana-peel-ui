@@ -6,8 +6,6 @@ export const loadPlayerGames = async username => {
     .then(prop('data'))
     .catch(err => console.error(err));
 
-  console.log(response);
-
   return response;
 };
 

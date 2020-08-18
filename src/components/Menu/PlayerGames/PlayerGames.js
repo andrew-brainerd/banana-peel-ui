@@ -1,46 +1,70 @@
 import React, { useEffect } from 'react';
-import { bool, arrayOf, shape, string, func } from 'prop-types';
+import { string, bool, arrayOf, shape, func } from 'prop-types';
+import moment from 'moment';
 import { useAuth0 } from '@auth0/auth0-react';
-import { SOLO_GAME } from '../../../constants/game';
-import { GAME_ROUTE } from '../../../constants/routes';
 import Loading from '../../common/Loading/Loading';
 import styles from './PlayerGames.module.scss';
-import Button from '../../common/Button/Button';
 
-const PlayerGames = ({ isLoadingUser, isLoadingGames, games, loadPlayerGames, navTo }) => {
+const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlayerGames }) => {
   const { isAuthenticated, isLoading } = useAuth0();
 
   useEffect(() => {
-    isAuthenticated && !isLoading && !isLoadingUser && loadPlayerGames();
-  }, [isAuthenticated, isLoading, isLoadingUser, loadPlayerGames]);
+    isAuthenticated && !isLoading && !isLoadingUser && username && loadPlayerGames(username);
+  }, [isAuthenticated, isLoading, isLoadingUser, username, loadPlayerGames]);
 
   return isLoading || isLoadingUser || isLoadingGames ? <Loading isActive /> : (
     <div className={styles.playerGames}>
       <div className={styles.gameContainer}>
-        {(games || []).map(game => (
-          <div
-            key={game._id}
-            className={styles.game}
-            onClick={() => navTo(GAME_ROUTE.replace(':gameId', game._id))}
-          >
-            {console.log(game)}
-            <div className={styles.gameType}>
-              {game.type === SOLO_GAME ? 'Solo' : 'VS'}
+        {(games || []).map(game => {
+          const metadata = game.metadata;
+          const player1Character = metadata.players[0].characters;
+          const player2Character = metadata.players[1].characters;
+
+          console.log(game);
+          return (
+            <div key={game._id} className={styles.game}>
+              <div className={styles.metadata}>
+                <div className={styles.stat}>
+                  <span className={styles.label}>Frames: </span>
+                  {metadata.lastFrame}
+                </div>
+                <div className={styles.stat}>
+                  <span className={styles.label}>Played On: </span>
+                  {metadata.playedOn}
+                </div>
+                <div className={styles.stat}>
+                  <span className={styles.label}>Started At: </span>
+                  {moment(metadata.startAt).format('MM/DD/YYYY h:mm:ss a')}
+                </div>
+                <div className={styles.stat}>
+                  {Object.keys(player1Character).map(char => (
+                    <span key={char}>
+                      <span className={styles.label}>
+                        Player 1 Character:
+                      </span> [{char}: {player1Character[char]}]
+                    </span>
+                  ))}
+                </div>
+                <div className={styles.stat}>
+                  {Object.keys(player2Character).map(char => (
+                    <span key={char}>
+                      <span className={styles.label}>
+                        Player 2 Character:
+                      </span> [{char}: {player2Character[char]}]
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
-            {game.isGameOver ? <span /> :
-              <Button
-                text='Play'
-                onClick={() => navTo(GAME_ROUTE.replace(':gameId', game._id))}
-              />
-            }
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
 };
 
 PlayerGames.propTypes = {
+  username: string,
   isLoadingUser: bool,
   isLoadingGames: bool,
   games: arrayOf(shape({
@@ -53,8 +77,7 @@ PlayerGames.propTypes = {
       player2: string
     })
   })),
-  loadPlayerGames: func.isRequired,
-  navTo: func.isRequired
+  loadPlayerGames: func.isRequired
 };
 
 export default PlayerGames;

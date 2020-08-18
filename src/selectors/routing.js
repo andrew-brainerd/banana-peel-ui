@@ -6,4 +6,4 @@ export const getPathname = compose(prop('pathname'), getLocation);
 
 export const getQuery = compose(prop('query'), getLocation);
 
-export const getGameId = compose(pathname => (pathname || '').split('/')[2], getPathname);
+export const getUsername = compose(pathname => (pathname || '').split('/')[2], getPathname);

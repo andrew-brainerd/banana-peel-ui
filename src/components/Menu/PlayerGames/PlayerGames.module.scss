@@ -1,11 +1,7 @@
 @import '../../../styles/mixins';
 
 .playerGames {
-  border-top: 5px solid black;
-  height: 225px;
   margin: 0 auto;
-  overflow-x: auto;
-  overflow-y: hidden;
   padding: 25px 0;
   width: 95%;
 
@@ -27,13 +23,14 @@
       padding: 10px 35px;
       text-align: center;
 
-      &.gameOver {
-        background: $gray-65;
-        opacity: 0.9;
-      }
+      .metadata {
+        .stat {
+          text-align: left;
 
-      .gameScore {
-        font-size: 0.8em;
+          .label {
+            font-weight: bold;
+          }
+        }
       }
     }
   }
