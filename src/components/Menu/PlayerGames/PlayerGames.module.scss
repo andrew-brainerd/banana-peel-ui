@@ -14,15 +14,17 @@
 
       background: #99fdfe;
       border: 2px solid black;
+      cursor: pointer;
       display: flex;
       flex: 1 1 150px;
       flex-direction: column;
       font-size: 1.5em;
-      height: 175px;
+      // height: 175px;
       justify-content: space-evenly;
       margin: 10px;
       padding: 10px 35px;
       text-align: center;
+      transition: 0.3s all ease-in-out;
 
       &.netplay {
         background: $gray-50;

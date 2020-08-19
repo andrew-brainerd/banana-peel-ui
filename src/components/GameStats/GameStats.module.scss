@@ -1,0 +1,22 @@
+.gameStats {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 15px 0;
+  width: 100%;
+
+  h3 {
+    margin: 5px;
+  }
+
+  .stat {
+    text-align: left;
+
+    .label {
+      display: inline-block;
+      font-weight: bold;
+      margin-right: 5px;
+      text-align: right;
+      width: 155px;
+    }
+  }
+}

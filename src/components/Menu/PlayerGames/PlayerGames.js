@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { string, bool, arrayOf, shape, func } from 'prop-types';
 import moment from 'moment';
 import { isEmpty } from 'ramda';
 import { useAuth0 } from '@auth0/auth0-react';
 import characterMap from '../../../constants/characters';
 import Loading from '../../common/Loading/Loading';
+import GameStats from '../../GameStats/GameStats';
 import styles from './PlayerGames.module.scss';
 
 const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlayerGames }) => {
   const { isAuthenticated, isLoading } = useAuth0();
+  const [selectedGame, setSelectedGame] = useState('5f3c898ed235625270e3221e');
 
   useEffect(() => {
     isAuthenticated && !isLoading && !isLoadingUser && username && loadPlayerGames(username);
@@ -23,10 +25,15 @@ const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlaye
           const player2 = metadata.players[1];
           const isNetplayGame = !isEmpty(player1.names) && !isEmpty(player2.names);
 
-          isNetplayGame && console.log(game);
-
           return isNetplayGame ? (
-            <div key={game._id} className={[styles.game, isNetplayGame ? styles.netplay : ''].join(' ')}>
+            <div
+              key={game._id}
+              className={[
+                styles.game,
+                isNetplayGame ? styles.netplay : ''
+              ].join(' ')}
+              onClick={() => setSelectedGame(game._id)}
+            >
               <div className={styles.metadata}>
                 <div className={styles.stat}>
                   {Object.keys(player1.characters).map(char => (
@@ -53,6 +60,7 @@ const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlaye
                   {moment(metadata.startAt).format('MM/DD/YYYY h:mm:ss a')}
                 </div>
               </div>
+              {selectedGame === game._id && <GameStats stats={game.stats} />}
             </div>
           ) : null;
         })}
