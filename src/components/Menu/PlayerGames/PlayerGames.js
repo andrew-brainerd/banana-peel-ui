@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { string, bool, arrayOf, shape, func } from 'prop-types';
 import moment from 'moment';
+import { isEmpty } from 'ramda';
 import { useAuth0 } from '@auth0/auth0-react';
+import characterMap from '../../../constants/characters';
 import Loading from '../../common/Loading/Loading';
 import styles from './PlayerGames.module.scss';
 
@@ -17,46 +19,42 @@ const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlaye
       <div className={styles.gameContainer}>
         {(games || []).map(game => {
           const metadata = game.metadata;
-          const player1Character = metadata.players[0].characters;
-          const player2Character = metadata.players[1].characters;
+          const player1 = metadata.players[0];
+          const player2 = metadata.players[1];
+          const isNetplayGame = !isEmpty(player1.names) && !isEmpty(player2.names);
 
-          console.log(game);
-          return (
-            <div key={game._id} className={styles.game}>
+          isNetplayGame && console.log(game);
+
+          return isNetplayGame ? (
+            <div key={game._id} className={[styles.game, isNetplayGame ? styles.netplay : ''].join(' ')}>
               <div className={styles.metadata}>
                 <div className={styles.stat}>
-                  <span className={styles.label}>Frames: </span>
-                  {metadata.lastFrame}
+                  {Object.keys(player1.characters).map(char => (
+                    <span key={char}>
+                      <span className={styles.label}>
+                        Player 1:
+                      </span>
+                      {`${player1.names.netplay || 'P1'} as ${characterMap[char] || char}`}
+                    </span>
+                  ))}
                 </div>
                 <div className={styles.stat}>
-                  <span className={styles.label}>Played On: </span>
-                  {metadata.playedOn}
+                  {Object.keys(player2.characters).map(char => (
+                    <span key={char}>
+                      <span className={styles.label}>
+                        Player 2:
+                      </span>
+                      {`${player2.names.netplay || 'P2'} as ${characterMap[char] || char}`}
+                    </span>
+                  ))}
                 </div>
                 <div className={styles.stat}>
                   <span className={styles.label}>Started At: </span>
                   {moment(metadata.startAt).format('MM/DD/YYYY h:mm:ss a')}
                 </div>
-                <div className={styles.stat}>
-                  {Object.keys(player1Character).map(char => (
-                    <span key={char}>
-                      <span className={styles.label}>
-                        Player 1 Character:
-                      </span> [{char}: {player1Character[char]}]
-                    </span>
-                  ))}
-                </div>
-                <div className={styles.stat}>
-                  {Object.keys(player2Character).map(char => (
-                    <span key={char}>
-                      <span className={styles.label}>
-                        Player 2 Character:
-                      </span> [{char}: {player2Character[char]}]
-                    </span>
-                  ))}
-                </div>
               </div>
             </div>
-          );
+          ) : null;
         })}
       </div>
     </div>

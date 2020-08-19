@@ -13,7 +13,6 @@ export const loadingGame = { type: LOADING_GAME };
 export const gameLoaded = game => ({ type: GAME_LOADED, game });
 
 export const loadPlayerGames = username => async dispatch => {
-  console.log('Loading Player Games', username);
   dispatch(loadingGames);
   username && gameApi.loadPlayerGames(username).then(({ items }) => {
     dispatch(gamesLoaded(items));
