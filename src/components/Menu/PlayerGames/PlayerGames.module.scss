@@ -5,7 +5,7 @@
   margin: 0 auto;
   height: 85vh;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
   width: 95%;
 
   .gameContainer {
@@ -19,25 +19,34 @@
       flex: 1 1 150px;
       flex-direction: column;
       font-size: 1.5em;
-      // height: 175px;
       justify-content: space-evenly;
-      margin: 10px;
+      margin: 15px auto;
+      max-width: 850px;
       padding: 10px 35px;
       text-align: center;
       transition: 0.3s all ease-in-out;
+      user-select: none;
 
       &.netplay {
         background: $gray-50;
       }
 
-      .metadata {
-        .stat {
-          text-align: left;
+      .characterData {
+        align-items: center;
+        display: flex;
+        justify-content: space-evenly;
 
-          .label {
-            display: inline-block;
+        .character {
+          text-align: center;
+          width: 30%;
+
+          .playerName {
             font-weight: bold;
-            margin-right: 5px;
+            margin-bottom: 10px;
+          }
+
+          .characterName {
+            font-size: 0.7em;
           }
         }
       }

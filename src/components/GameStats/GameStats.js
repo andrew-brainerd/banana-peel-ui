@@ -9,11 +9,12 @@ const GameStats = ({ stats }) => {
   return (
     <div className={styles.gameStats}>
       <div className={styles.player1}>
-        <h3>Player 1</h3>
+        {/* <h3>Player 1</h3> */}
         <Actions player={stats.actionCounts[0]} />
       </div>
+      <div className={styles.filler}>VS</div>
       <div className={styles.player2}>
-        <h3>Player 2</h3>
+        {/* <h3>Player 2</h3> */}
         <Actions player={stats.actionCounts[1]} />
       </div>
     </div>

@@ -5,12 +5,13 @@ import { isEmpty } from 'ramda';
 import { useAuth0 } from '@auth0/auth0-react';
 import characterMap from '../../../constants/characters';
 import Loading from '../../common/Loading/Loading';
+import Icon from '../../common/Icon/Icon';
 import GameStats from '../../GameStats/GameStats';
 import styles from './PlayerGames.module.scss';
 
 const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlayerGames }) => {
   const { isAuthenticated, isLoading } = useAuth0();
-  const [selectedGame, setSelectedGame] = useState('5f3c898ed235625270e3221e');
+  const [selectedGame, setSelectedGame] = useState(null); //5f3c898ed235625270e3221e
 
   useEffect(() => {
     isAuthenticated && !isLoading && !isLoadingUser && username && loadPlayerGames(username);
@@ -32,34 +33,33 @@ const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlaye
                 styles.game,
                 isNetplayGame ? styles.netplay : ''
               ].join(' ')}
-              onClick={() => setSelectedGame(game._id)}
+              onClick={() => selectedGame === game._id ? setSelectedGame(null) : setSelectedGame(game._id)}
             >
-              <div className={styles.metadata}>
-                <div className={styles.stat}>
+              <div className={styles.characterData}>
+                <div className={styles.character}>
                   {Object.keys(player1.characters).map(char => (
                     <span key={char}>
-                      <span className={styles.label}>
-                        Player 1:
-                      </span>
-                      {`${player1.names.netplay || 'P1'} as ${characterMap[char] || char}`}
+                      <div className={styles.playerName}>{player1.names.netplay || 'P1'}</div>
+                      <Icon name={characterMap[char].icon} />
+                      <div className={styles.characterName}>{characterMap[char].name || char}</div>
                     </span>
                   ))}
                 </div>
-                <div className={styles.stat}>
+                <div className={styles.versus}>VS</div>
+                <div className={styles.character}>
                   {Object.keys(player2.characters).map(char => (
                     <span key={char}>
-                      <span className={styles.label}>
-                        Player 2:
-                      </span>
-                      {`${player2.names.netplay || 'P2'} as ${characterMap[char] || char}`}
+                      <div className={styles.playerName}>{player2.names.netplay || 'P2'}</div>
+                      <Icon name={characterMap[char].icon} />
+                      <div className={styles.characterName}>{characterMap[char].name || char}</div>
                     </span>
                   ))}
                 </div>
-                <div className={styles.stat}>
-                  <span className={styles.label}>Started At: </span>
-                  {moment(metadata.startAt).format('MM/DD/YYYY h:mm:ss a')}
-                </div>
               </div>
+              {/* <div className={styles.stat}>
+                <span className={styles.label}>Started At: </span>
+                {moment(metadata.startAt).format('MM/DD/YYYY h:mm:ss a')}
+              </div> */}
               {selectedGame === game._id && <GameStats stats={game.stats} />}
             </div>
           ) : null;

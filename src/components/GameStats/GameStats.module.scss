@@ -4,8 +4,13 @@
   padding: 15px 0;
   width: 100%;
 
-  h3 {
-    margin: 5px;
+  .filler {
+    color: transparent;
+  }
+
+  .player1,
+  .player2 {
+    width: 30%;
   }
 
   .stat {
