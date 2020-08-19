@@ -1,5 +1,5 @@
-@import '../../../styles/colors';
-@import '../../../styles/mixins';
+@import '../../styles/colors';
+@import '../../styles/mixins';
 
 .playerGames {
   margin: 0 auto;
@@ -14,6 +14,7 @@
 
       background: #99fdfe;
       border: 2px solid black;
+      color: white;
       cursor: pointer;
       display: flex;
       flex: 1 1 150px;
@@ -28,7 +29,7 @@
       user-select: none;
 
       &.netplay {
-        background: $gray-50;
+        background: #222238;
       }
 
       .characterData {
@@ -49,6 +50,10 @@
             font-size: 0.7em;
           }
         }
+      }
+
+      .time {
+        font-size: 0.7em;
       }
     }
   }

@@ -27,7 +27,10 @@ export default {
     name: 'Link',
     icon: 'link'
   },
-  7: '???',
+  7: {
+    name: 'Sheik',
+    icon: 'sheik'
+  },
   8: {
     name: 'Ness',
     icon: 'ness'

@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import { getUsername } from '../../../selectors/routing';
-import { getIsLoadingUser } from '../../../selectors/user';
-import { getIsLoadingGames, getPlayerGames } from '../../../selectors/game';
-import { loadPlayerGames } from '../../../actions/game';
+import { getUsername } from '../../selectors/routing';
+import { getIsLoadingUser } from '../../selectors/user';
+import { getIsLoadingGames, getPlayerGames } from '../../selectors/game';
+import { loadPlayerGames } from '../../actions/game';
 import PlayerGames from './PlayerGames';
 
 const mapStateToProps = state => ({

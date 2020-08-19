@@ -11,6 +11,7 @@ const Icon = ({ className, name, title, onClick }) => {
       src={typeof iconImage === 'object' ? '' : iconImage}
       wrapper={'span'}
       onClick={onClick || noop}
+      alt={name}
     />
   );
 };
