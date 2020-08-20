@@ -29,45 +29,48 @@ const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlaye
           const isNetplayGame = !isEmpty(player1.names) && !isEmpty(player2.names);
 
           return isNetplayGame ? (
-            <div
-              key={game._id}
-              className={[
-                styles.game,
-                isNetplayGame ? styles.netplay : ''
-              ].join(' ')}
-              onClick={() => selectedGame === game._id ? setSelectedGame(null) : setSelectedGame(game._id)}
-            >
-              <div className={styles.gameData}>
-                <div className={styles.stageData}>
-                  <Icon className={styles.stage} name={(stageMap[stage] || {}).icon || 'default_stage'} />
-                  {selectedGame === game._id && console.log(game.settings)}
-                  <div className={styles.stageName}>{(stageMap[stage] || {}).name || stage}</div>
-                </div>
-                <div className={styles.character}>
-                  <div className={styles.playerName}>{player1.names.netplay || 'P1'}</div>
-                  {Object.keys(player1.characters).map((char, i) => i === 0 && (
-                    <span key={char}>
-                      <Icon name={characterMap[char].icon || 'default_character'} />
-                      <div className={styles.characterName}>{characterMap[char].name || char}</div>
-                    </span>
-                  ))}
-                </div>
-                <div className={styles.versus}>VS</div>
-                <div className={styles.character}>
-                  <div className={styles.playerName}>{player2.names.netplay || 'P2'}</div>
-                  {Object.keys(player2.characters).map((char, i) => i === 0 && (
-                    <span key={char}>
-                      <Icon name={characterMap[char].icon || 'default_character'} />
-                      <div className={styles.characterName}>{characterMap[char].name || char}</div>
-                    </span>
-                  ))}
-                </div>
+            <>
+              <div className={styles.gameHeader}>
+                {moment(metadata.startAt).format('MM/DD/YYYY')}
+                <span className={styles.time}>{moment(metadata.startAt).format('h:mm:ss a')}</span>
               </div>
-              <div className={styles.time}>
-                {moment(metadata.startAt).format('MM/DD/YYYY h:mm:ss a')}
+              <div
+                key={game._id}
+                className={[
+                  styles.game,
+                  isNetplayGame ? styles.netplay : ''
+                ].join(' ')}
+                onClick={() => selectedGame === game._id ? setSelectedGame(null) : setSelectedGame(game._id)}
+              >
+                <div className={styles.gameData}>
+                  <div className={styles.stageData}>
+                    <Icon className={styles.stage} name={(stageMap[stage] || {}).icon || 'default_stage'} />
+                    {selectedGame === game._id && console.log(game.settings)}
+                    <div className={styles.stageName}>{(stageMap[stage] || {}).name || stage}</div>
+                  </div>
+                  <div className={styles.character}>
+                    <div className={styles.playerName}>{player1.names.netplay || 'P1'}</div>
+                    {Object.keys(player1.characters).map((char, i) => i === 0 && (
+                      <span key={char}>
+                        <Icon name={characterMap[char].icon || 'default_character'} />
+                        <div className={styles.characterName}>{characterMap[char].name || char}</div>
+                      </span>
+                    ))}
+                  </div>
+                  <div className={styles.versus}>VS</div>
+                  <div className={styles.character}>
+                    <div className={styles.playerName}>{player2.names.netplay || 'P2'}</div>
+                    {Object.keys(player2.characters).map((char, i) => i === 0 && (
+                      <span key={char}>
+                        <Icon name={characterMap[char].icon || 'default_character'} />
+                        <div className={styles.characterName}>{characterMap[char].name || char}</div>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                {selectedGame === game._id && <GameStats stats={game.stats} />}
               </div>
-              {selectedGame === game._id && <GameStats stats={game.stats} />}
-            </div>
+            </>
           ) : null;
         })}
       </div>
