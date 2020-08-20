@@ -12,7 +12,7 @@
     .game {
       @include fadeInAnimation();
 
-      background: #99fdfe;
+      background: #222238;
       border: 2px solid black;
       color: white;
       cursor: pointer;
@@ -23,19 +23,25 @@
       justify-content: space-evenly;
       margin: 15px auto;
       max-width: 850px;
+      min-width: 750px;
       padding: 10px 35px;
       text-align: center;
       transition: 0.3s all ease-in-out;
       user-select: none;
 
-      &.netplay {
-        background: #222238;
-      }
-
-      .characterData {
+      .gameData {
         align-items: center;
         display: flex;
         justify-content: space-evenly;
+        padding-bottom: 10px;
+
+        .stage {
+          width: 100px;
+        }
+
+        .stageName {
+          font-size: 0.5em;
+        }
 
         .character {
           text-align: center;
@@ -53,8 +59,15 @@
       }
 
       .time {
-        font-size: 0.7em;
+        font-size: 0.6em;
+        text-align: left;
       }
     }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .playerGames {
+    overflow-x: auto;
   }
 }

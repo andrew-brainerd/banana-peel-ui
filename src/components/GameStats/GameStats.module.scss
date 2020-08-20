@@ -4,7 +4,12 @@
   padding: 15px 0;
   width: 100%;
 
-  .filler {
+  .stageFiller {
+    width: 100px;
+  }
+
+  .filler,
+  .stageFiller {
     color: transparent;
   }
 
@@ -14,7 +19,9 @@
   }
 
   .stat {
+    font-size: 0.9em;
     text-align: left;
+    word-wrap: none;
 
     .label {
       display: inline-block;
