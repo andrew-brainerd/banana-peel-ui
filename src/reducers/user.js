@@ -1,8 +1,10 @@
-import { LOADING_USER, SET_CURRENT_USER } from '../actions/user';
+import { LOADING_USER, SET_CURRENT_USER, CHECKING_USERNAME, USERNAME_CHECKED } from '../actions/user';
 
 export const initialState = {
   isLoadingUser: false,
-  currentUser: {}
+  currentUser: {},
+  isCheckingUsername: false,
+  isUsernameAvailable: false
 };
 
 const user = (state = initialState, action) => {
@@ -17,6 +19,17 @@ const user = (state = initialState, action) => {
         ...state,
         isLoadingUser: false,
         currentUser: action.user
+      };
+    case CHECKING_USERNAME:
+      return {
+        ...state,
+        isCheckingUsername: true
+      };
+    case USERNAME_CHECKED:
+      return {
+        ...state,
+        isCheckingUsername: false,
+        isUsernameAvailable: action.isValid
       };
     default:
       return state;

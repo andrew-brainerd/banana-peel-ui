@@ -3,10 +3,11 @@ import { object } from 'prop-types';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { ConnectedRouter } from 'connected-react-router';
 import { Route, Switch } from 'react-router-dom';
-import { MENU_ROUTE, PLAYER_GAMES_ROUTE } from '../../constants/routes';
+import { MENU_ROUTE, PLAYER_GAMES_ROUTE, NEW_USER_ROUTE } from '../../constants/routes';
 import Header from '../Header/container';
 import Menu from '../Menu/Menu';
 import PlayerGames from '../PlayerGames/container';
+import NewUser from '../NewUser/container';
 import styles from './App.module.scss';
 
 const App = ({ history }) => {
@@ -24,6 +25,7 @@ const App = ({ history }) => {
           <Switch>
             <Route path={MENU_ROUTE} exact component={Menu} />
             <Route path={PLAYER_GAMES_ROUTE} exact component={PlayerGames} />
+            <Route path={NEW_USER_ROUTE} exact component={NewUser} />
           </Switch>
         </ConnectedRouter>
       </Auth0Provider>
