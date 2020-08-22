@@ -4,7 +4,6 @@ import {
   GAME_LOADED,
   LOADING_GAME
 } from '../actions/game';
-import { emptyScoreboard } from '../constants/game';
 
 export const initialState = {
   isLoadingGames: false,
@@ -18,8 +17,7 @@ const game = (state = initialState, action) => {
       return {
         ...state,
         isLoadingGames: true,
-        isGameOver: false,
-        playerGames: []
+        isGameOver: false
       };
     case GAMES_LOADED:
       return {
@@ -31,15 +29,7 @@ const game = (state = initialState, action) => {
     case LOADING_GAME:
       return {
         ...state,
-        isLoadingGame: true,
-        isPlaying: false,
-        isGameOver: false,
-        currentPlayer: null,
-        gameId: '',
-        type: '',
-        player1: emptyScoreboard,
-        player2: emptyScoreboard,
-        _id: ''
+        isLoadingGame: true
       };
     case GAME_LOADED:
       return {

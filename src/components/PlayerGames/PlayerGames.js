@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { string, bool, arrayOf, shape, func } from 'prop-types';
 import moment from 'moment';
 import { isEmpty } from 'ramda';
 import { useAuth0 } from '@auth0/auth0-react';
+import usePollingEffect from '../../hooks/usePollingEffect';
 import stageMap from '../../constants/stages';
 import characterMap from '../../constants/characters';
 import Loading from '../common/Loading/Loading';
@@ -12,13 +13,13 @@ import styles from './PlayerGames.module.scss';
 
 const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlayerGames }) => {
   const { isLoading } = useAuth0();
-  const [selectedGame, setSelectedGame] = useState(null);
+  const [selectedGame, setSelectedGame] = useState('');
 
-  useEffect(() => {
+  const { isPolling } = usePollingEffect(() => {
     username && loadPlayerGames(username);
-  }, [username, loadPlayerGames]);
+  }, [username, loadPlayerGames], 10000);
 
-  return isLoading || isLoadingUser || isLoadingGames ? <Loading isActive /> : (
+  return !isPolling && (isLoading || isLoadingUser || isLoadingGames) ? <Loading isActive /> : (
     <div className={styles.playerGames}>
       <div className={styles.gameContainer}>
         {(games || []).map(game => {

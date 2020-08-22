@@ -45,7 +45,10 @@ const Header = ({ currentUser, setCurrentUser, navTo }) => {
               <Button
                 className={styles.menuButton}
                 text='My Games'
-                onClick={() => navTo(PLAYER_GAMES_ROUTE.replace(':username', username))}
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  navTo(PLAYER_GAMES_ROUTE.replace(':username', username));
+                }}
               />
               <Button
                 className={styles.menuButton}

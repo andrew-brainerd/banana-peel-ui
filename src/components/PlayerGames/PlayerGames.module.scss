@@ -11,6 +11,8 @@
 
   .gameContainer {
     color: white;
+    position: relative;
+    z-index: 0;
 
     .gameHeader {
       @include fadeInAnimation();
@@ -90,9 +92,10 @@
       }
 
       .gameContent {
-        font-size: 1em;min-width: 150px;
+        font-size: 1em;
+        min-width: 150px;
         padding: 5px 0;
-        
+
         .gameData {
           .stage {
             width: 75px;
