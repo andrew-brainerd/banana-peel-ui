@@ -5,7 +5,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import { Route, Switch } from 'react-router-dom';
 import { HOME_ROUTE, PLAYER_GAMES_ROUTE, NEW_USER_ROUTE } from '../../constants/routes';
 import Header from '../Header/container';
-import Home from '../Home/Home';
+import Home from '../Home/container';
 import PlayerGames from '../PlayerGames/container';
 import NewUser from '../NewUser/container';
 import styles from './App.module.scss';

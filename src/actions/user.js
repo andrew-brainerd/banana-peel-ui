@@ -36,10 +36,10 @@ export const setCurrentUser = user => async dispatch => {
 
 export const checkUsername = username => async dispatch => {
   dispatch(checkingUsername);
+  await new Promise(resolve => setTimeout(resolve, 5000));
   usersApi.getUserByUsername(username)
     .then(({ doesNotExist }) => {
       if (doesNotExist) {
-        console.log('New User', username);
         dispatch(usernameChecked(true));
       } else {
         dispatch(usernameChecked(false));
