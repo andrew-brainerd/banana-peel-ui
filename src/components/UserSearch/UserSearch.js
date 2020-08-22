@@ -5,7 +5,7 @@ import { PLAYER_GAMES_ROUTE } from '../../constants/routes';
 import styles from './UserSearch.module.scss';
 
 const UserSearch = ({ navTo }) => {
-  const [username, setUsername] = useState('Sp1d3rM0nk3y');
+  const [username, setUsername] = useState('');
 
   return (
     <div className={styles.userSearch}>

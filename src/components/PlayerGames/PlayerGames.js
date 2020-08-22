@@ -11,12 +11,12 @@ import GameStats from '../GameStats/GameStats';
 import styles from './PlayerGames.module.scss';
 
 const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlayerGames }) => {
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isLoading } = useAuth0();
   const [selectedGame, setSelectedGame] = useState(null);
 
   useEffect(() => {
-    isAuthenticated && !isLoading && !isLoadingUser && username && loadPlayerGames(username);
-  }, [isAuthenticated, isLoading, isLoadingUser, username, loadPlayerGames]);
+    username && loadPlayerGames(username);
+  }, [username, loadPlayerGames]);
 
   return isLoading || isLoadingUser || isLoadingGames ? <Loading isActive /> : (
     <div className={styles.playerGames}>
@@ -29,7 +29,7 @@ const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlaye
           const isNetplayGame = !isEmpty(player1.names) && !isEmpty(player2.names);
 
           return isNetplayGame ? (
-            <>
+            <div key={game._id} className={styles.game}>
               <div className={styles.gameHeader}>
                 {moment(metadata.startAt).format('MM/DD/YYYY')}
                 <span className={styles.time}>{moment(metadata.startAt).format('h:mm:ss a')}</span>
@@ -37,7 +37,7 @@ const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlaye
               <div
                 key={game._id}
                 className={[
-                  styles.game,
+                  styles.gameContent,
                   isNetplayGame ? styles.netplay : ''
                 ].join(' ')}
                 onClick={() => selectedGame === game._id ? setSelectedGame(null) : setSelectedGame(game._id)}
@@ -45,7 +45,6 @@ const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlaye
                 <div className={styles.gameData}>
                   <div className={styles.stageData}>
                     <Icon className={styles.stage} name={(stageMap[stage] || {}).icon || 'default_stage'} />
-                    {selectedGame === game._id && console.log(game.settings)}
                     <div className={styles.stageName}>{(stageMap[stage] || {}).name || stage}</div>
                   </div>
                   <div className={styles.character}>
@@ -70,7 +69,7 @@ const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlaye
                 </div>
                 {selectedGame === game._id && <GameStats stats={game.stats} />}
               </div>
-            </>
+            </div>
           ) : null;
         })}
       </div>

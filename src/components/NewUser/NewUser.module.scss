@@ -1,0 +1,15 @@
+.newUser {
+  align-items: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+
+  img {
+    margin-top: 5px;
+  }
+
+  .createButton {
+    margin-top: 10px;
+    width: 150px;
+  }
+}
