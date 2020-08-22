@@ -4,11 +4,13 @@ import { useAuth0 } from '@auth0/auth0-react';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 import Button from '../common/Button/Button';
 import styles from './Header.module.scss';
+import { PLAYER_GAMES_ROUTE } from '../../constants/routes';
 
-const Header = ({ currentUser, setCurrentUser }) => {
+const Header = ({ currentUser, setCurrentUser, navTo }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isAuthenticated, loginWithRedirect, logout, isLoading, user } = useAuth0();
   const menuRef = useRef();
+  const username = (currentUser || {}).username;
 
   useEffect(() => {
     user && setCurrentUser(user);
@@ -26,7 +28,7 @@ const Header = ({ currentUser, setCurrentUser }) => {
         >
           |||
         </div>
-        <div className={styles.player}>{(currentUser || {}).username}</div>
+        <div className={styles.player}>{username}</div>
       </div>
       {isMenuOpen &&
         <div className={styles.headerMenu} ref={menuRef}>
@@ -39,11 +41,18 @@ const Header = ({ currentUser, setCurrentUser }) => {
             />
           )}
           {isAuthenticated && (
-            <Button
-              className={styles.menuButton}
-              text={'Sign Out'}
-              onClick={() => logout()}
-            />
+            <>
+              <Button
+                className={styles.menuButton}
+                text='My Games'
+                onClick={() => navTo(PLAYER_GAMES_ROUTE.replace(':username', username))}
+              />
+              <Button
+                className={styles.menuButton}
+                text='Sign Out'
+                onClick={() => logout()}
+              />
+            </>
           )}
         </div>
       }
@@ -55,7 +64,8 @@ Header.propTypes = {
   currentUser: shape({
     username: string
   }),
-  setCurrentUser: func.isRequired
+  setCurrentUser: func.isRequired,
+  navTo: func.isRequired
 };
 
 export default Header;
