@@ -1,22 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { bool, func } from 'prop-types';
+import { shape, string, func } from 'prop-types';
 import { useAuth0 } from '@auth0/auth0-react';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 import Button from '../common/Button/Button';
 import styles from './Header.module.scss';
 
-const Header = ({ shouldSignOut, setCurrentUser }) => {
+const Header = ({ currentUser, setCurrentUser }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isAuthenticated, loginWithRedirect, logout, isLoading, user } = useAuth0();
   const menuRef = useRef();
-
-  useEffect(() => {
-    !isAuthenticated && !isLoading && loginWithRedirect();
-  }, [isAuthenticated, isLoading, loginWithRedirect]);
-
-  useEffect(() => {
-    isAuthenticated && shouldSignOut && logout();
-  }, [isAuthenticated, shouldSignOut, logout]);
 
   useEffect(() => {
     user && setCurrentUser(user);
@@ -34,7 +26,7 @@ const Header = ({ shouldSignOut, setCurrentUser }) => {
         >
           |||
         </div>
-        <div className={styles.player}>{(user || {}).name}</div>
+        <div className={styles.player}>{(currentUser || {}).username}</div>
       </div>
       {isMenuOpen &&
         <div className={styles.headerMenu} ref={menuRef}>
@@ -60,8 +52,9 @@ const Header = ({ shouldSignOut, setCurrentUser }) => {
 };
 
 Header.propTypes = {
-  shouldSignIn: bool,
-  shouldSignOut: bool,
+  currentUser: shape({
+    username: string
+  }),
   setCurrentUser: func.isRequired
 };
 

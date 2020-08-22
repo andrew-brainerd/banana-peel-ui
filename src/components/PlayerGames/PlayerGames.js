@@ -11,12 +11,12 @@ import GameStats from '../GameStats/GameStats';
 import styles from './PlayerGames.module.scss';
 
 const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlayerGames }) => {
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isLoading } = useAuth0();
   const [selectedGame, setSelectedGame] = useState(null);
 
   useEffect(() => {
-    isAuthenticated && !isLoading && !isLoadingUser && username && loadPlayerGames(username);
-  }, [isAuthenticated, isLoading, isLoadingUser, username, loadPlayerGames]);
+    username && loadPlayerGames(username);
+  }, [username, loadPlayerGames]);
 
   return isLoading || isLoadingUser || isLoadingGames ? <Loading isActive /> : (
     <div className={styles.playerGames}>
@@ -28,8 +28,8 @@ const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlaye
           const stage = game.settings.stageId;
           const isNetplayGame = !isEmpty(player1.names) && !isEmpty(player2.names);
 
-          return isNetplayGame ? (
-            <>
+          return !isNetplayGame ? (
+            <div key={game._id} className={styles.game}>
               <div className={styles.gameHeader}>
                 {moment(metadata.startAt).format('MM/DD/YYYY')}
                 <span className={styles.time}>{moment(metadata.startAt).format('h:mm:ss a')}</span>
@@ -37,7 +37,7 @@ const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlaye
               <div
                 key={game._id}
                 className={[
-                  styles.game,
+                  styles.gameContent,
                   isNetplayGame ? styles.netplay : ''
                 ].join(' ')}
                 onClick={() => selectedGame === game._id ? setSelectedGame(null) : setSelectedGame(game._id)}
@@ -70,7 +70,7 @@ const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlaye
                 </div>
                 {selectedGame === game._id && <GameStats stats={game.stats} />}
               </div>
-            </>
+            </div>
           ) : null;
         })}
       </div>

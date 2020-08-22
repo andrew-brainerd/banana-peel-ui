@@ -1,6 +1,6 @@
 import * as usersApi from '../api/users';
 import { navTo } from './routing';
-import { NEW_USER_ROUTE, MENU_ROUTE } from '../constants/routes';
+import { NEW_USER_ROUTE, HOME_ROUTE } from '../constants/routes';
 import { getCurrentUser } from '../selectors/user';
 
 const PREFIX = 'USERS';
@@ -54,6 +54,6 @@ export const createUser = username => async (dispatch, getState) => {
   dispatch(creatingUser);
   usersApi.createUser(currentUser.name, currentUser.email, username).then(user => {
     dispatch({ type: SET_CURRENT_USER, user: { ...currentUser, ...user } });
-    dispatch(navTo(MENU_ROUTE));
+    dispatch(navTo(HOME_ROUTE));
   });
 };
