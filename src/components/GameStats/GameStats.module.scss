@@ -1,3 +1,5 @@
+@import '../../styles/sizing';
+
 .gameStats {
   display: flex;
   justify-content: space-evenly;
@@ -29,6 +31,22 @@
       margin-right: 5px;
       text-align: right;
       width: 155px;
+    }
+  }
+}
+
+@media screen and (max-width: $smallScreen) {
+  .gameStats {
+    .stageFiller {
+      width: 50px;
+    }
+
+    .stat {
+      font-size: 0.7em;
+
+      .label {
+        width: 75px;
+      }
     }
   }
 }

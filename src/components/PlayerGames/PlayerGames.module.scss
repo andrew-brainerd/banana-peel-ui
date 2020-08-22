@@ -1,5 +1,6 @@
 @import '../../styles/colors';
 @import '../../styles/mixins';
+@import '../../styles/sizing';
 
 .playerGames {
   margin: 0 auto;
@@ -18,7 +19,7 @@
       font-weight: bold;
       margin: 25px auto 5px auto;
       max-width: 850px;
-      min-width: 750px;
+      min-width: $smallScreen;
       padding: 10px 35px;
       position: relative;
 
@@ -41,7 +42,7 @@
       justify-content: space-evenly;
       margin: 5px auto;
       max-width: 850px;
-      min-width: 750px;
+      min-width: $smallScreen;
       padding: 10px 35px;
       text-align: center;
       transition: 0.3s all ease-in-out;
@@ -79,8 +80,29 @@
   }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: $smallScreen) {
   .playerGames {
     overflow-x: auto;
+
+    .gameContainer {
+      .gameHeader {
+        min-width: 150px;
+      }
+
+      .gameContent {
+        font-size: 1em;min-width: 150px;
+        padding: 5px 0;
+        
+        .gameData {
+          .stage {
+            width: 75px;
+          }
+
+          img {
+            width: 75px;
+          }
+        }
+      }
+    }
   }
 }

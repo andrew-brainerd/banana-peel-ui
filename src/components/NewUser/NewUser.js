@@ -12,7 +12,7 @@ const NewUser = ({ isCheckingUsername, isUsernameAvailable, checkUsername, creat
 
   useEffect(() => {
     debouncedUsername !== '' && checkUsername(debouncedUsername);
-  }, [debouncedUsername]);
+  }, [debouncedUsername, checkUsername]);
 
   return (
     <div className={styles.newUser}>
