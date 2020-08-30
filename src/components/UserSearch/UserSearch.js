@@ -12,10 +12,12 @@ const UserSearch = ({ navTo }) => {
       <TextInput
         className={styles.userInputContainer}
         inputClassName={styles.userInput}
-        placeholder='Enter a username'
+        placeholder='Enter a connect code'
         onChange={setUsername}
         value={username}
-        onPressEnter={() => navTo(PLAYER_GAMES_ROUTE.replace(':username', username))}
+        onPressEnter={() =>
+          navTo(PLAYER_GAMES_ROUTE.replace(':username', username.replace('#', '-')))
+        }
         autofocus
       />
     </div>

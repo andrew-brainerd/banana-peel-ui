@@ -4,7 +4,6 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import { ConnectedRouter } from 'connected-react-router';
 import { Route, Switch } from 'react-router-dom';
 import { HOME_ROUTE, PLAYER_GAMES_ROUTE, NEW_USER_ROUTE } from '../../constants/routes';
-import Header from '../Header/container';
 import Home from '../Home/container';
 import PlayerGames from '../PlayerGames/container';
 import NewUser from '../NewUser/container';
@@ -21,7 +20,6 @@ const App = ({ history }) => {
           history.push(appState && appState.targetUrl ? appState.targetUrl : window.location.pathname)
         }>
         <ConnectedRouter history={history}>
-          <Header />
           <Switch>
             <Route path={HOME_ROUTE} exact component={Home} />
             <Route path={PLAYER_GAMES_ROUTE} exact component={PlayerGames} />

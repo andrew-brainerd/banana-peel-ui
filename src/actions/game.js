@@ -12,9 +12,9 @@ export const gamesLoaded = games => ({ type: GAMES_LOADED, games });
 export const loadingGame = { type: LOADING_GAME };
 export const gameLoaded = game => ({ type: GAME_LOADED, game });
 
-export const loadPlayerGames = username => async dispatch => {
+export const loadPlayerGames = connectCode => async dispatch => {
   dispatch(loadingGames);
-  username && gameApi.loadPlayerGames(username).then(({ items }) => {
+  connectCode && gameApi.loadPlayerGames(connectCode).then(({ items }) => {
     dispatch(gamesLoaded(items));
   });
 };

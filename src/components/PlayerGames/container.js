@@ -1,19 +1,19 @@
 import { connect } from 'react-redux';
-import { getUsername } from '../../selectors/routing';
+import { getConnectCode } from '../../selectors/routing';
 import { getIsLoadingUser } from '../../selectors/user';
 import { getIsLoadingGames, getPlayerGames } from '../../selectors/game';
 import { loadPlayerGames } from '../../actions/game';
 import PlayerGames from './PlayerGames';
 
 const mapStateToProps = state => ({
-  username: getUsername(state),
+  connectCode: getConnectCode(state),
   isLoadingUser: getIsLoadingUser(state),
   isLoadingGames: getIsLoadingGames(state),
   games: getPlayerGames(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadPlayerGames: username => dispatch(loadPlayerGames(username))
+  loadPlayerGames: connectCode => dispatch(loadPlayerGames(connectCode))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerGames);

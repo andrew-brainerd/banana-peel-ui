@@ -11,13 +11,13 @@ import Icon from '../common/Icon/Icon';
 import GameStats from '../GameStats/GameStats';
 import styles from './PlayerGames.module.scss';
 
-const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlayerGames }) => {
+const PlayerGames = ({ connectCode, isLoadingUser, isLoadingGames, games, loadPlayerGames }) => {
   const { isLoading } = useAuth0();
   const [selectedGame, setSelectedGame] = useState('');
 
   const { isPolling } = usePollingEffect(() => {
-    username && loadPlayerGames(username);
-  }, [username, loadPlayerGames], 10000);
+    connectCode && loadPlayerGames(connectCode);
+  }, [connectCode, loadPlayerGames], 10000);
 
   return !isPolling && (isLoading || isLoadingUser || isLoadingGames) ? <Loading isActive /> : (
     <div className={styles.playerGames}>
@@ -79,7 +79,7 @@ const PlayerGames = ({ username, isLoadingUser, isLoadingGames, games, loadPlaye
 };
 
 PlayerGames.propTypes = {
-  username: string,
+  connectCode: string,
   isLoadingUser: bool,
   isLoadingGames: bool,
   games: arrayOf(shape({

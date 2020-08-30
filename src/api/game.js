@@ -1,8 +1,8 @@
 import { prop } from 'ramda';
 import { client } from './tools';
 
-export const loadPlayerGames = async username => {
-  const response = await client.get('/games', { params: { username } })
+export const loadPlayerGames = async connectCode => {
+  const response = await client.get('/games', { params: { connectCode: connectCode.replace('-', '#') } })
     .then(prop('data'))
     .catch(err => console.error(err));
 
