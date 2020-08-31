@@ -4,12 +4,15 @@
   border-bottom: 1px solid white;
   display: flex;
   justify-content: flex-start;
+  margin: 0 auto;
+  width: 90%;
   z-index: 3;
 
   .view {
     border: 1px solid white;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    cursor: pointer;
     left: 50px;
     padding: 5px 10px;
     position: relative;
@@ -30,9 +33,10 @@
   border-right: 1px solid white;
   display: flex;
   justify-content: space-evenly;
+  margin: 0 auto;
   padding: 15px 0;
   position: relative;
-  width: 100%;
+  width: 90%;
   z-index: 1;
 
   .stageFiller {

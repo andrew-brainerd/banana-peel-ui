@@ -16,7 +16,7 @@ const UserSearch = ({ navTo }) => {
         onChange={setUsername}
         value={username}
         onPressEnter={() =>
-          navTo(PLAYER_GAMES_ROUTE.replace(':username', username.replace('#', '-')))
+          navTo(PLAYER_GAMES_ROUTE.replace(':username', username.replace('#', '-').toUpperCase()))
         }
         autofocus
       />

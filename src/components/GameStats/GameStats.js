@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { shape, array } from 'prop-types';
+import React, { useState, useEffect } from 'react';
+import { string, shape, array, func } from 'prop-types';
 import Actions from './Actions/Actions';
 import Overall from './Overall/Overall';
 import styles from './GameStats.module.scss';
@@ -9,10 +9,16 @@ const OVERALL_VIEW = 'Overall';
 
 const views = [ACTIONS_VIEW, OVERALL_VIEW];
 
-const GameStats = ({ stats }) => {
+const GameStats = ({ gameId, stats, loadGame }) => {
   const [selectedView, setSelectedView] = useState(OVERALL_VIEW);
 
-  return (
+  console.log(stats);
+
+  useEffect(() => {
+    gameId && loadGame(gameId);
+  }, [gameId, loadGame]);
+
+  return stats ? (
     <>
       <div className={styles.viewSelector}>
         {views.map(view =>
@@ -44,17 +50,19 @@ const GameStats = ({ stats }) => {
         </div>
       </div>
     </>
-  );
+  ) : null;
 };
 
 GameStats.propTypes = {
+  gameId: string,
   stats: shape({
     actionCounts: array,
     combos: array,
     conversions: array,
     overall: array,
     stocks: array
-  }).isRequired
+  }),
+  loadGame: func.isRequired
 };
 
 export default GameStats;

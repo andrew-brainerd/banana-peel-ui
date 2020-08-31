@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { string, bool, arrayOf, shape, func } from 'prop-types';
 import moment from 'moment';
 import { isEmpty } from 'ramda';
@@ -6,14 +6,13 @@ import { useAuth0 } from '@auth0/auth0-react';
 import usePollingEffect from '../../hooks/usePollingEffect';
 import stageMap from '../../constants/stages';
 import characterMap from '../../constants/characters';
+import { GAME_STATS_ROUTE } from '../../constants/routes';
 import Loading from '../common/Loading/Loading';
 import Icon from '../common/Icon/Icon';
-import GameStats from '../GameStats/GameStats';
 import styles from './PlayerGames.module.scss';
 
-const PlayerGames = ({ connectCode, isLoadingUser, isLoadingGames, games, loadPlayerGames }) => {
+const PlayerGames = ({ connectCode, isLoadingUser, isLoadingGames, games, loadPlayerGames, navTo }) => {
   const { isLoading } = useAuth0();
-  const [selectedGame, setSelectedGame] = useState('');
 
   const { isPolling } = usePollingEffect(() => {
     connectCode && loadPlayerGames(connectCode);
@@ -41,7 +40,7 @@ const PlayerGames = ({ connectCode, isLoadingUser, isLoadingGames, games, loadPl
                   styles.gameContent,
                   isNetplayGame ? styles.netplay : ''
                 ].join(' ')}
-                onClick={() => selectedGame === game._id ? setSelectedGame(null) : setSelectedGame(game._id)}
+                onClick={() => navTo(GAME_STATS_ROUTE.replace(':gameId', game._id))}
               >
                 <div className={styles.gameData}>
                   <div className={styles.stageData}>
@@ -68,7 +67,6 @@ const PlayerGames = ({ connectCode, isLoadingUser, isLoadingGames, games, loadPl
                     ))}
                   </div>
                 </div>
-                {selectedGame === game._id && <GameStats stats={game.stats} />}
               </div>
             </div>
           ) : null;
@@ -92,7 +90,8 @@ PlayerGames.propTypes = {
       player2: string
     })
   })),
-  loadPlayerGames: func.isRequired
+  loadPlayerGames: func.isRequired,
+  navTo: func.isRequired
 };
 
 export default PlayerGames;

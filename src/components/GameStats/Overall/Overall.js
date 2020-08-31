@@ -3,8 +3,6 @@ import { shape, number } from 'prop-types';
 import styles from '../GameStats.module.scss';
 
 const Overall = ({ player }) => {
-  console.log(player);
-
   return (
     <>
       <div className={styles.stat}>
