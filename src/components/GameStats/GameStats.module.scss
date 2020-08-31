@@ -1,85 +1,15 @@
 @import '../../styles/sizing';
 
-.viewSelector {
-  border-bottom: 1px solid white;
-  display: flex;
-  justify-content: flex-start;
-  margin: 0 auto;
-  width: 90%;
-  z-index: 3;
-
-  .view {
-    border: 1px solid white;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    cursor: pointer;
-    left: 50px;
-    padding: 5px 10px;
-    position: relative;
-    top: 1px;
-    z-index: 5;
-
-    &.selected {
-      background: #17172e;
-      border-bottom: 2px solid #17172e;
-    }
-  }
-}
-
-.gameStats {
-  background: #17172e;
-  border-bottom: 1px solid white;
-  border-left: 1px solid white;
-  border-right: 1px solid white;
+.statContainer {
   display: flex;
   justify-content: space-evenly;
-  margin: 0 auto;
-  padding: 15px 0;
-  position: relative;
-  width: 90%;
+  // min-width: 550px;
   z-index: 1;
+}
 
-  .stageFiller {
-    width: 100px;
-  }
-
-  .filler,
-  .stageFiller {
-    color: transparent;
-  }
-
-  .player1,
-  .player2 {
-    width: 30%;
-  }
-
-  .stat {
-    font-size: 0.9em;
-    text-align: left;
-    word-wrap: none;
-
-    .label {
-      display: inline-block;
-      font-weight: bold;
-      margin-right: 5px;
-      text-align: right;
-      width: 155px;
-    }
+@media screen and (max-width: 550px) {
+  .statContainer {
+    flex-direction: column;
   }
 }
 
-@media screen and (max-width: $smallScreen) {
-  .gameStats {
-    .stageFiller {
-      width: 50px;
-    }
-
-    .stat {
-      font-size: 0.7em;
-
-      .label {
-        width: 75px;
-      }
-    }
-  }
-}

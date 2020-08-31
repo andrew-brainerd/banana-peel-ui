@@ -1,0 +1,53 @@
+@import '../../../styles/mixins';
+@import '../../../styles/sizing';
+
+.overallContainer {
+  color: white;
+  margin: 10px;
+  position: relative;
+  width: 45%;
+  z-index: 0;
+
+  .overallHeader {
+    @include fadeInAnimation();
+    @include basicHeader();
+  }
+
+  .overallContent {
+    @include fadeInAnimation();
+    @include basicContent();
+  }
+
+  .stat {
+    font-size: 0.9em;
+    text-align: left;
+    word-wrap: none;
+
+    .label {
+      display: inline-block;
+      font-weight: bold;
+      margin-right: 5px;
+      text-align: right;
+      width: 155px;
+    }
+  }
+}
+
+@media screen and (max-width: $smallScreen) {
+  .overallContainer {
+    .stat {
+      font-size: 0.7em;
+
+      .label {
+        width: 125px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .overallContainer {
+    margin: 10px auto;
+    width: 90%;
+  }
+}
