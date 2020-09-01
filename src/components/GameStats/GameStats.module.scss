@@ -2,13 +2,20 @@
 @import '../../styles/sizing';
 
 .game {
-  .stageHeader {
+  margin: 25px;
+
+  .contentHeader {
     @include basicHeader();
 
     margin: 10px;
+
+    .time {
+      position: absolute;
+      right: 35px;
+    }
   }
 
-  .stageData {
+  .content {
     @include basicContent();
 
     align-items: center;
@@ -34,10 +41,6 @@
 
 @media screen and (max-width: 550px) {
   .game {
-    .stageData {
-
-    }
-
     .gameStats {
       flex-direction: column;
 

@@ -8,12 +8,10 @@
   z-index: 0;
 
   .actionHeader {
-    @include fadeInAnimation();
     @include basicHeader();
   }
 
   .actionContent {
-    @include fadeInAnimation();
     @include basicContent();
   }
 

@@ -35,6 +35,8 @@
 }
 
 @mixin basicHeader {
+  @include fadeInAnimation();
+
   background: #17172e;
   font-weight: bold;
   margin: 15px auto 5px auto;
@@ -43,9 +45,10 @@
 }
 
 @mixin basicContent {
+  @include fadeInAnimation();
+
   background: #222238;
   border: 2px solid black;
-  cursor: pointer;
   display: flex;
   flex: 1 1 150px;
   flex-direction: column;

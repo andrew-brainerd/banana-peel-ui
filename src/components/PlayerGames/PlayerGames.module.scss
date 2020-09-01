@@ -18,7 +18,6 @@
     z-index: 0;
 
     .gameHeader {
-      @include fadeInAnimation();
       @include basicHeader();
 
       max-width: 850px;
@@ -31,9 +30,9 @@
     }
 
     .gameContent {
-      @include fadeInAnimation();
       @include basicContent();
 
+      cursor: pointer;
       max-width: 850px;
       min-width: $smallScreen;
 
