@@ -1,22 +1,51 @@
+@import '../../styles/mixins';
 @import '../../styles/sizing';
 
-.gameStats {
-  display: flex;
-}
+.game {
+  .stageHeader {
+    @include basicHeader();
 
-.statContainer {
-  z-index: 1;
-  width: 50%;
+    margin: 10px;
+  }
+
+  .stageData {
+    @include basicContent();
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 2em;
+    margin: 10px;
+
+    img {
+      width: 100px;
+    }
+  }
+
+  .gameStats {
+    display: flex;
+
+    .statContainer {
+      z-index: 1;
+      width: 50%;
+    }
+  }
 }
 
 @media screen and (max-width: 550px) {
-  .gameStats {
-    flex-direction: column;
-  }
+  .game {
+    .stageData {
 
-  .statContainer {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+    }
+
+    .gameStats {
+      flex-direction: column;
+
+      .statContainer {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+    }
   }
 }
