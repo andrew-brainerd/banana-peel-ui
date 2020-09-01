@@ -18,7 +18,7 @@ const PlayerGames = ({ connectCode, isLoadingUser, isLoadingGames, games, loadPl
     connectCode && loadPlayerGames(connectCode);
   }, [connectCode, loadPlayerGames], 10000);
 
-  return !isPolling && (isLoading || isLoadingUser || isLoadingGames) ? <Loading isActive /> : (
+  return !isPolling && (isLoading || isLoadingUser || isLoadingGames) ? <Loading className={styles.loading} isActive /> : (
     <div className={styles.playerGames}>
       <div className={styles.gameContainer}>
         {(games || []).map(game => {

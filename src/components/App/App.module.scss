@@ -1,7 +1,11 @@
 .app {
   color: white;
+  display: flex;
   height: 100%;
+  flex-direction: column;
+  margin: 0 auto;
   overflow-y: auto;
+  max-width: 1050px;
 
   .attribution {
     bottom: 0;

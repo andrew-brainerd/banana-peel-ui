@@ -2,9 +2,12 @@
 @import '../../styles/mixins';
 @import '../../styles/sizing';
 
+.loading {
+  padding-top: 50px;
+}
+
 .playerGames {
   margin: 0 auto;
-  height: 85vh;
   overflow-x: hidden;
   overflow-y: scroll;
   width: 95%;

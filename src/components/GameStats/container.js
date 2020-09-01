@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import { getGameId } from '../../selectors/routing';
-import { getSelectedGameStats } from '../../selectors/game';
+import { getSelectedGameStats, getStageId } from '../../selectors/game';
 import { loadGame } from '../../actions/game';
 import GameStats from './GameStats';
 
 const mapStateToProps = state => ({
   gameId: getGameId(state),
-  stats: getSelectedGameStats(state)
+  stats: getSelectedGameStats(state),
+  stageId: getStageId(state)
 });
 
 const mapDispatchToProps = dispatch => ({

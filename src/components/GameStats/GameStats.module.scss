@@ -1,15 +1,22 @@
 @import '../../styles/sizing';
 
-.statContainer {
+.gameStats {
   display: flex;
-  justify-content: space-evenly;
-  // min-width: 550px;
+}
+
+.statContainer {
   z-index: 1;
+  width: 50%;
 }
 
 @media screen and (max-width: 550px) {
-  .statContainer {
+  .gameStats {
     flex-direction: column;
   }
-}
 
+  .statContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}

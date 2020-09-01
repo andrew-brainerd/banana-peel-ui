@@ -1,18 +1,18 @@
 @import '../../../styles/mixins';
 @import '../../../styles/sizing';
 
-.overallContainer {
+.metadataContainer {
   color: white;
   margin: 10px;
   position: relative;
   z-index: 0;
 
-  .overallHeader {
+  .metadataHeader {
     @include fadeInAnimation();
     @include basicHeader();
   }
 
-  .overallContent {
+  .metadataContent {
     @include fadeInAnimation();
     @include basicContent();
   }
@@ -33,7 +33,7 @@
 }
 
 @media screen and (max-width: $smallScreen) {
-  .overallContainer {
+  .metadataContainer {
     .stat {
       font-size: 0.7em;
 
@@ -45,7 +45,7 @@
 }
 
 @media screen and (max-width: 550px) {
-  .overallContainer {
+  .metadataContainer {
     margin: 10px auto;
     width: 90%;
   }
