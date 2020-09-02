@@ -10,7 +10,7 @@ export const loadPlayerGames = async connectCode => {
 };
 
 export const loadGame = async gameId => {
-  const response = await client.get(`/games/${gameId}`)
+  const response = await client.get(`/games/id/${gameId}`)
     .then(prop('data'))
     .catch(err => console.error(err));
 

@@ -1,0 +1,50 @@
+@import '../../../styles/mixins';
+@import '../../../styles/sizing';
+
+.actionContainer {
+  color: white;
+  margin: 10px;
+  position: relative;
+  z-index: 0;
+
+  .actionHeader {
+    @include basicHeader();
+  }
+
+  .actionContent {
+    @include basicContent();
+  }
+
+  .stat {
+    font-size: 0.9em;
+    text-align: left;
+    word-wrap: none;
+
+    .label {
+      display: inline-block;
+      font-weight: bold;
+      margin-right: 5px;
+      text-align: right;
+      width: 155px;
+    }
+  }
+}
+
+@media screen and (max-width: $smallScreen) {
+  .actionContainer {
+    .stat {
+      font-size: 0.7em;
+
+      .label {
+        width: 125px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .actionContainer {
+    margin: 10px auto;
+    width: 90%;
+  }
+}

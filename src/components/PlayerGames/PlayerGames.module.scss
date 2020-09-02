@@ -2,9 +2,12 @@
 @import '../../styles/mixins';
 @import '../../styles/sizing';
 
+.loading {
+  padding-top: 50px;
+}
+
 .playerGames {
   margin: 0 auto;
-  height: 85vh;
   overflow-x: hidden;
   overflow-y: scroll;
   width: 95%;
@@ -15,15 +18,10 @@
     z-index: 0;
 
     .gameHeader {
-      @include fadeInAnimation();
+      @include basicHeader();
 
-      background: #17172e;
-      font-weight: bold;
-      margin: 25px auto 5px auto;
       max-width: 850px;
       min-width: $smallScreen;
-      padding: 10px 35px;
-      position: relative;
 
       .time {
         position: absolute;
@@ -32,23 +30,11 @@
     }
 
     .gameContent {
-      @include fadeInAnimation();
+      @include basicContent();
 
-      background: #222238;
-      border: 2px solid black;
       cursor: pointer;
-      display: flex;
-      flex: 1 1 150px;
-      flex-direction: column;
-      font-size: 1.5em;
-      justify-content: space-evenly;
-      margin: 5px auto;
       max-width: 850px;
       min-width: $smallScreen;
-      padding: 10px 35px;
-      text-align: center;
-      transition: 0.3s all ease-in-out;
-      user-select: none;
 
       .gameData {
         align-items: center;

@@ -1,8 +1,11 @@
 .app {
-  background: #07071f;
   color: white;
-  height: 100vh;
-  padding-top: 50px;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  margin: 0 auto;
+  overflow-y: auto;
+  max-width: 1050px;
 
   .attribution {
     bottom: 0;

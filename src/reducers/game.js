@@ -8,7 +8,8 @@ import {
 export const initialState = {
   isLoadingGames: false,
   isLoadingGame: false,
-  playerGames: []
+  playerGames: [],
+  selectedGame: null
 };
 
 const game = (state = initialState, action) => {
@@ -35,9 +36,7 @@ const game = (state = initialState, action) => {
       return {
         ...state,
         isLoadingGame: false,
-        isCreatingGame: false,
-        isPlaying: true,
-        ...action.game
+        selectedGame: action.game
       };
     default:
       return state;
