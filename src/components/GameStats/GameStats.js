@@ -1,18 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { string, shape, array, object, number, func } from 'prop-types';
+import { isEmpty } from 'ramda';
 import moment from 'moment';
+import usePollingEffect from '../../hooks/usePollingEffect';
 import isValidGameId from '../../utils/isValidGameId';
 import stageMap from '../../constants/stages';
 import Icon from '../common/Icon/Icon';
 import Metadata from './Metadata/container';
 import Actions from './Actions/Actions';
 import Overall from './Overall/Overall';
+import Loading from '../common/Loading/Loading';
 import styles from './GameStats.module.scss';
 
 const GameStats = ({ gameId, stats, metadata, stageId, loadGame }) => {
-  useEffect(() => {
+  usePollingEffect(() => {
     isValidGameId(gameId) && loadGame(gameId);
-  }, [gameId, loadGame]);
+  }, [gameId, loadGame], isEmpty(stats) ? 1000 : null);
 
   return stats ? (
     <div className={styles.game}>
@@ -37,7 +40,7 @@ const GameStats = ({ gameId, stats, metadata, stageId, loadGame }) => {
         </div>
       </div>
     </div>
-  ) : null;
+  ) : <Loading isActive />;
 };
 
 GameStats.propTypes = {
