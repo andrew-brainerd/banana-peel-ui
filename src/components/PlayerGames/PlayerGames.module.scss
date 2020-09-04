@@ -9,8 +9,13 @@
 .playerGames {
   margin: 0 auto;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   width: 95%;
+
+  h1 {
+    margin-top: 50px;
+    text-align: center;
+  }
 
   .gameContainer {
     color: white;
