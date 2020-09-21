@@ -20,6 +20,7 @@
     "react-hooks/exhaustive-deps": "off",
     "no-extra-boolean-cast": "off",
     "generator-star-spacing": "off",
+    "yield-star-spacing": "off",
     "space-before-function-paren": "off"
   },
   "settings": {
