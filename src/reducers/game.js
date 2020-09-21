@@ -1,5 +1,5 @@
 import {
-  LOADING_GAMES,
+  LOAD_GAMES,
   GAMES_LOADED,
   GAME_LOADED,
   LOADING_GAME
@@ -14,7 +14,7 @@ export const initialState = {
 
 const game = (state = initialState, action) => {
   switch (action.type) {
-    case LOADING_GAMES:
+    case LOAD_GAMES:
       return {
         ...state,
         isLoadingGames: true,

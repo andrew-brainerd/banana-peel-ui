@@ -18,7 +18,9 @@
     "no-multiple-empty-lines": [2, { "max": 2 }],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "off",
-    "no-extra-boolean-cast": "off"
+    "no-extra-boolean-cast": "off",
+    "generator-star-spacing": "off",
+    "space-before-function-paren": "off"
   },
   "settings": {
     "react": {

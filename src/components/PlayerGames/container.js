@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { getConnectCode } from '../../selectors/routing';
 import { getIsLoadingUser } from '../../selectors/user';
 import { getIsLoadingGames, getPlayerGames } from '../../selectors/game';
-import { loadPlayerGames } from '../../actions/game';
+import { loadPlayerGames } from '../../sagas/game';
 import { navTo } from '../../actions/routing';
 import PlayerGames from './PlayerGames';
 
