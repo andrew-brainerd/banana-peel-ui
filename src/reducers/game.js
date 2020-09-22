@@ -2,7 +2,7 @@ import {
   LOAD_GAMES,
   GAMES_LOADED,
   GAME_LOADED,
-  LOADING_GAME
+  LOAD_GAME
 } from '../actions/game';
 
 export const initialState = {
@@ -27,7 +27,7 @@ const game = (state = initialState, action) => {
         isLoadingGame: false,
         playerGames: action.games
       };
-    case LOADING_GAME:
+    case LOAD_GAME:
       return {
         ...state,
         isLoadingGame: true

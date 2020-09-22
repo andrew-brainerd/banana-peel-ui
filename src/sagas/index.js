@@ -1,8 +1,9 @@
 import { all } from 'redux-saga/effects';
-import { playerGamesWatcher } from './game';
+import { playerGamesWatcher, gameWatcher } from './game';
 
 export default function* rootSaga() {
   yield all([
-    playerGamesWatcher()
+    playerGamesWatcher(),
+    gameWatcher()
   ]);
 }
