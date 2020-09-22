@@ -3,7 +3,7 @@ import WebFont from 'webfontloader';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore, { history, sagaMiddleware } from './store/configureStore';
-import { playerGamesWatcher } from './sagas/game';
+import sagas from './sagas';
 import App from './components/App/App';
 import './index.scss';
 
@@ -18,7 +18,7 @@ WebFont.load({
 
 const store = configureStore();
 
-sagaMiddleware.run(playerGamesWatcher);
+sagaMiddleware.run(sagas);
 
 ReactDOM.render(
   <Provider store={store}>
